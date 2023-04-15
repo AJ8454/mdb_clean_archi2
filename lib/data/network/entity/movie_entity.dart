@@ -1,3 +1,8 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'movie_entity.g.dart';
+
+@JsonSerializable()
 class UpcomingMovies {
   UpcomingMovies({
     required this.page,
@@ -6,12 +11,16 @@ class UpcomingMovies {
     required this.results,
   });
 
-  int page;
+  String page;
   String next;
   int entries;
   List<MovieEntity> results;
+
+  factory UpcomingMovies.fromJson(Map<String, dynamic> json) =>
+      _$UpcomingMoviesFromJson(json);
 }
 
+@JsonSerializable()
 class MovieEntity {
   MovieEntity({
     required this.id,
@@ -28,8 +37,12 @@ class MovieEntity {
   TitleText titleText;
   ReleaseYear? releaseYear;
   ReleaseDate releaseDate;
+
+  factory MovieEntity.fromJson(Map<String, dynamic> json) =>
+      _$MovieEntityFromJson(json);
 }
 
+@JsonSerializable()
 class PrimaryImage {
   PrimaryImage({
     required this.id,
@@ -37,7 +50,6 @@ class PrimaryImage {
     required this.height,
     required this.url,
     required this.caption,
-    required this.typename,
   });
 
   String id;
@@ -45,62 +57,72 @@ class PrimaryImage {
   int height;
   String url;
   Caption caption;
-  String typename;
+
+  factory PrimaryImage.fromJson(Map<String, dynamic> json) =>
+      _$PrimaryImageFromJson(json);
 }
 
+@JsonSerializable()
 class Caption {
   Caption({
     required this.plainText,
-    required this.typename,
   });
 
   String plainText;
-  String typename;
+
+  factory Caption.fromJson(Map<String, dynamic> json) =>
+      _$CaptionFromJson(json);
 }
 
+@JsonSerializable()
 class ReleaseDate {
   ReleaseDate({
     required this.day,
     required this.month,
     required this.year,
-    required this.typename,
   });
 
   int day;
   int month;
   int year;
-  String typename;
+
+  factory ReleaseDate.fromJson(Map<String, dynamic> json) =>
+      _$ReleaseDateFromJson(json);
 }
 
+@JsonSerializable()
 class ReleaseYear {
   ReleaseYear({
     required this.year,
     this.endYear,
-    required this.typename,
   });
 
   int year;
   dynamic endYear;
-  String typename;
+
+  factory ReleaseYear.fromJson(Map<String, dynamic> json) =>
+      _$ReleaseYearFromJson(json);
 }
 
+@JsonSerializable()
 class TitleText {
   TitleText({
     required this.text,
-    required this.typename,
   });
 
   String text;
-  String typename;
+
+  factory TitleText.fromJson(Map<String, dynamic> json) =>
+      _$TitleTextFromJson(json);
 }
 
+@JsonSerializable()
 class TitleType {
   TitleType({
     required this.text,
     required this.id,
     required this.isSeries,
     required this.isEpisode,
-    required this.typename,
     this.categories,
     this.canHaveEpisodes,
   });
@@ -109,17 +131,21 @@ class TitleType {
   String id;
   bool isSeries;
   bool isEpisode;
-  String typename;
   List<Category>? categories;
   bool? canHaveEpisodes;
+
+  factory TitleType.fromJson(Map<String, dynamic> json) =>
+      _$TitleTypeFromJson(json);
 }
 
+@JsonSerializable()
 class Category {
   Category({
     required this.value,
-    required this.typename,
   });
 
   String value;
-  String typename;
+
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
 }
